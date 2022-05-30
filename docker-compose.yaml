@@ -1,0 +1,27 @@
+version: "3.8"
+services:
+  postgresdb:
+    image: postgres:latest
+    container_name: postgresdb
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=parrot
+  app:
+    container_name: live-code-parrot
+    image: live-code-parrot
+    working_dir: /app
+    build: 
+      context: docker
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+    env_file:
+      - .env
+    command: >
+      sh -c 'npm i 
+      && rm -rf dist
+      && npm run build
+      && npm run start:dev'
