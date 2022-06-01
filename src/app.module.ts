@@ -8,6 +8,12 @@ import { ProductModule } from './product/product.module';
 import { ReportModule } from './report/report.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CoreModule } from './core/core.module';
+import { Order } from './order/domain/order.entity';
+import { User } from './user/domain/user.entity';
+import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
+import { Product } from './product/domain/product.entity';
+import { Diner } from './diner/domain/diner.entity';
+import { OrderProduct } from './order/domain/order-product.entity';
 
 @Module({
   imports: [
@@ -18,8 +24,11 @@ import { CoreModule } from './core/core.module';
       username: process.env.POSTGRES_USER,
       password: process.env.POSTGRES_PASSWORD,
       database: process.env.POSTGRES_DATABASE,
-      entities: [],
-      synchronize: true
+      entities: [Order, User, Product, Diner, OrderProduct],
+      synchronize: false,
+      namingStrategy: new SnakeNamingStrategy(),
+      autoLoadEntities: true,
+      logging: true
     }),
     OrderModule,
     DinerModule,
