@@ -77,9 +77,9 @@ export class OrderService implements OrderInterface {
 
   public async getOrders(userId: string, startDate: Date, endDate: Date) {
 
-    const orders = await this.orderRepository.find({ orderDate: Between(startDate, endDate) })
+    const orders = await this.orderRepository
+      .find({ where: [{ orderDate: Between(startDate, endDate), userId: userId }] })
 
-    
 
     return orders;
 
