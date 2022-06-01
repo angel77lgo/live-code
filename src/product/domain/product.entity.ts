@@ -24,7 +24,7 @@ export class Product {
   @DeleteDateColumn()
   deletedAt?: Date
 
-  @ManyToOne(() => OrderProduct, (orderProduct) => orderProduct.products)
-  order?: OrderProduct
+  // @ManyToOne(() => OrderProduct, (orderProduct) => orderProduct.products)
+  // order?: OrderProduct
 
 }

@@ -22,8 +22,8 @@ export class OrderProduct {
   @ManyToOne(() => Order, (order) => order.orderProducts)
   order?: Order
 
-  @OneToMany(() => Product, (product) => product.order)
-  products?: Product[]
+  // @OneToMany(() => Product, (product) => product.order)
+  // products?: Product[]
 
   @CreateDateColumn()
   createdAt?: Date;
