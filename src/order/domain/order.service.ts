@@ -81,6 +81,11 @@ export class OrderService implements OrderInterface {
       .find({ where: [{ orderDate: Between(startDate, endDate), userId: userId }] })
 
 
+    orders.forEach(order => {
+      
+      order.orderProducts.sort((a, b) => (a.total < b.total) ? 1 : -1);
+    });
+    
     return orders;
 
   }
